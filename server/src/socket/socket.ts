@@ -5,7 +5,7 @@ import { SocketKeys } from "../types/socket";
 export function socketFlow(socket: Socket, server: SocketIO.Server) {
   socket.on(SocketKeys.key, (msg: string) => {
     if (typeof msg !== "string")
-      throw new socketParamNotMatchError(socketDisconnect);
+      throw new socketParamNotMatchError(socketDisconnect, socket, interval);
 
     server.emit(SocketKeys.key, msg);
   });

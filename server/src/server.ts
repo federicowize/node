@@ -5,6 +5,7 @@ import { createServer } from "http";
 import socketio, { Socket } from "socket.io";
 import { socketFlow } from "./socket/socket";
 import { Server as NetServer } from "net";
+import { setMiddlewares } from "./middleware/middleware";
 
 export class Server {
   public app: express.Application;
@@ -23,6 +24,8 @@ export class Server {
       res.sendFile(resolve("./src/index.html"));
     });
     //
+
+    setMiddlewares(this.app);
 
     //set socket
     this.io.on("connection", (socket: Socket) => {

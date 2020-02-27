@@ -1,7 +1,13 @@
+import { Socket } from "socket.io";
+
 export class socketParamNotMatchError extends Error {
-  //fix any later
-  constructor(disconnectFn: any) {
+  //fix add later types.
+  constructor(
+    disconnectFn: (socket: Socket, interval: NodeJS.Timeout) => void,
+    socket: Socket,
+    interval: NodeJS.Timeout
+  ) {
     super("parameter not match with the socket");
-    disconnectFn();
+    disconnectFn(socket, interval);
   }
 }
