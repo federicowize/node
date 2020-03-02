@@ -38,8 +38,7 @@ export class Server {
     return new Server(port);
   }
 
-  //fix any then
-  public start(callback: any) {
+  public start(callback: () => void) {
     this.http.listen(this.port, callback);
   }
 }
