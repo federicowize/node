@@ -32,6 +32,11 @@ export class Server {
       socketFlow(socket, this.io);
     });
     //
+
+    //get router
+    const router = require("./routes/router.ts")();
+    this.app.use("/api", router);
+    //
   }
 
   static init(port: number) {
