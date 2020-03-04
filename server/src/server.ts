@@ -6,6 +6,7 @@ import socketio, { Socket } from "socket.io";
 import { socketFlow } from "./socket/socket";
 import { Server as NetServer } from "net";
 import { setMiddlewares } from "./middleware/middleware";
+import router from "./routes/router";
 
 export class Server {
   public app: express.Application;
@@ -34,7 +35,6 @@ export class Server {
     //
 
     //get router
-    const router = require("./routes/router.ts")();
     this.app.use("/api", router);
     //
   }
