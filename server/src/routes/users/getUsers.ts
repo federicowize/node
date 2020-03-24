@@ -1,8 +1,8 @@
-import  * as express from "express";
+const express = require("express");
 
 module.exports = express
   .Router({ mergeParams: true })
-  .get("/users", async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  .get("/users", async (req: any, res: any, next: any) => {
     console.log("enter here", req.originalUrl);
     res.send("Admin Homepage");
   });
