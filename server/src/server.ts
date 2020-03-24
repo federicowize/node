@@ -26,7 +26,7 @@ export class Server {
     });
     //
 
-    setMiddlewares(this.app);
+    //setMiddlewares(this.app);
 
     //set socket
     this.io.on("connection", (socket: Socket) => {

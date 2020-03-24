@@ -9,15 +9,5 @@ export class socketParamNotMatchError extends Error {
   ) {
     super("parameter not match with the socket");
     disconnectFn(socket, interval);
-    this.testNumbersFunction(Enumbers.one)
   }
-  testNumbersFunction(numb: Enumbers):Enumbers {
-    return Enumbers.one;
-  }
-}
-
-export enum Enumbers {
-  one="1" ,
-  two="2" ,
-  three ="3"
 }
