@@ -6,8 +6,8 @@ import socketio, { Socket } from "socket.io";
 import { socketFlow } from "./socket/socket";
 import { Server as NetServer } from "net";
 import { setMiddlewares } from "./middleware/middleware";
-import router from "./routes/router";
-import RouterFactory from "./routes/router";
+
+import routes from "./routes/routes";
 
 export class Server {
   public app: express.Application;
@@ -36,9 +36,7 @@ export class Server {
     //
 
     //get router
-    new RouterFactory()
-      .getRoutesWithRouterFactory()
-      .then(routes => this.app.use("/api", routes));
+    routes.readRoutes().then(routes => this.app.use("/api", routes));
   }
 
   static init(port: number) {

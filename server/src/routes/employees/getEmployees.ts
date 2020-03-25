@@ -1,10 +1,11 @@
 import { Router, Request, Response, NextFunction } from "express";
 
-import { IRouterFactory } from "routerFactory";
+import { RouterFactory } from "../../types/routerFactory";
 
-class getEmployees implements IRouterFactory {
-  parentName: string = "/employees";
-
+class getEmployees extends RouterFactory {
+  constructor() {
+    super(__filename);
+  }
   getRouter(): Router {
     return Router({ mergeParams: true }).get(
       this.parentName,
