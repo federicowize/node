@@ -1,28 +1,28 @@
 import { sync } from "glob";
 import { Router } from "express";
+import { IRouterFactory } from "routerFactory";
 
 class RouterFactory {
-  async getRoutes() {
-    const rr: Promise<any>[] = sync("**/*.js", {
-      cwd: `${__dirname}/`
-    }).map((filename: string) => import(`./${filename}`));
-    const r = await Promise.all(rr).then(each => {
-      return each
-        .filter((router: any) => {
-          const module = new router.default();
-          if (module.getRouter) {
-            return true;
-          }
-        })
-        .reduce((AcumulatorRouter: Router | any, nextRouter: Router | any) => {
-          const module = new nextRouter.default();
-          const x = module.getRouter();
-          return AcumulatorRouter.use(module.getRouter());
+  // returns a Router with all the routes that implements RouterFactory
+  // inside routes folder
+  public getRoutesWithRouterFactory(): Promise<Router> {
+    return this.getNestedFiles().then(classFiles =>
+      classFiles
+        .map((setInstance: any) => new setInstance.default())
+        .filter((obj: any | IRouterFactory) => (obj.getRouter ? true : false))
+        .reduce((router: Router, factoryInstance: IRouterFactory) => {
+          return router.use(factoryInstance.getRouter());
+        }, Router({ mergeParams: true }))
+    );
+  }
 
-          // return  AcumulatorRouter.use(nextRouter)
-        }, Router({ mergeParams: true }));
-    });
-    return r;
+  //read nested classes inside ./routes and import
+  private getNestedFiles(): Promise<Object[]> {
+    return Promise.all(
+      sync("**/*.js", {
+        cwd: `${__dirname}/`
+      }).map((filename: string) => import(`./${filename}`))
+    );
   }
 }
 export default RouterFactory;

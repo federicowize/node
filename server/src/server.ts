@@ -37,7 +37,7 @@ export class Server {
 
     //get router
     new RouterFactory()
-      .getRoutes()
+      .getRoutesWithRouterFactory()
       .then(routes => this.app.use("/api", routes));
   }
 
