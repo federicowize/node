@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import { resolve } from "path";
 import express from "express";
 import { createServer } from "http";
@@ -6,6 +6,8 @@ import socketio, { Socket } from "socket.io";
 import { socketFlow } from "./socket/socket";
 import { Server as NetServer } from "net";
 import { setMiddlewares } from "./middleware/middleware";
+import router from "./routes/router";
+import RouterFactory from "./routes/router";
 
 export class Server {
   public app: express.Application;
@@ -25,13 +27,18 @@ export class Server {
     });
     //
 
-    setMiddlewares(this.app);
+    //setMiddlewares(this.app);
 
     //set socket
     this.io.on("connection", (socket: Socket) => {
       socketFlow(socket, this.io);
     });
     //
+
+    //get router
+    new RouterFactory()
+      .getRoutesWithRouterFactory()
+      .then(routes => this.app.use("/api", routes));
   }
 
   static init(port: number) {
