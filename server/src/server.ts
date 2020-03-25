@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import { resolve } from "path";
 import express from "express";
 import { createServer } from "http";
@@ -7,6 +7,7 @@ import { socketFlow } from "./socket/socket";
 import { Server as NetServer } from "net";
 import { setMiddlewares } from "./middleware/middleware";
 import router from "./routes/router";
+import RouterFactory from "./routes/router";
 
 export class Server {
   public app: express.Application;
@@ -35,8 +36,9 @@ export class Server {
     //
 
     //get router
-    this.app.use("/api", router);
-    //
+    new RouterFactory()
+      .getRoutes()
+      .then(routes => this.app.use("/api", routes));
   }
 
   static init(port: number) {
