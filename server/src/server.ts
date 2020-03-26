@@ -8,6 +8,8 @@ import { Server as NetServer } from "net";
 import { setMiddlewares } from "./middleware/middleware";
 
 import routes from "./routes/routes";
+import { eventNames } from "cluster";
+import enviromentConfig from "./models/enviroment";
 
 export class Server {
   public app: express.Application;
@@ -40,7 +42,8 @@ export class Server {
   }
 
   static init(port: number) {
-    return new Server(port);
+    enviromentConfig.setEnviroment();
+    return new Server(3000);
   }
 
   public start(callback: () => void) {

@@ -5,8 +5,10 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc --sourcemap && node ./dist/index.js",
-    "start:watch": "nodemon",
+    "start-development": "tsc --sourcemap && cross-env NODE_ENV=development node ./dist/index.js",
+    "start-production": "tsc && cross-env NODE_ENV=production node ./dist/index.js",
+    "start-development:watch": "nodemon --exec npm run start-development",
+    "start-production:watch": "nodemon --exec npm run start-production",
     "build": "tsc"
   },
   "author": "",
@@ -21,7 +23,6 @@
     "watch": [
       "src"
     ],
-    "exec": "npm start",
     "ext": "ts"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "@types/glob": "^7.1.1",
     "@types/node": "^13.7.6",
     "@types/socket.io": "^2.1.4",
+    "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "socket.io": "^2.3.0",
     "ts-node": "^8.6.2",
