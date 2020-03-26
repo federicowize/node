@@ -41,9 +41,13 @@ export class Server {
     routes.readRoutes().then(routes => this.app.use("/api", routes));
   }
 
-  static init(port: number) {
+  static init() {
+    //load process enviroment
     enviromentConfig.setEnviroment();
-    return new Server(3000);
+    //
+    const port = Number(process.env.port);
+
+    return new Server(port);
   }
 
   public start(callback: () => void) {

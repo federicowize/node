@@ -1,6 +1,6 @@
 import { sync } from "glob";
 import { Router } from "express";
-import { RouterFactory } from "routerFactory";
+import { RouterFactory } from "../models/routerFactory";
 
 class routes {
   // returns a Router with all the routes that implements RouterFactory

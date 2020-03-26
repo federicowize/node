@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 
-import { RouterFactory } from "../../../types/routerFactory";
+import { RouterFactory } from "../../../models/routerFactory";
 
 class getTest extends RouterFactory {
   constructor() {
