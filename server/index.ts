@@ -1,5 +1,7 @@
 import { Server } from "./src/server";
 
-const server = Server.init(3000);
+const server = Server.init();
 
-server.start(() => console.log("listening on *:3000"));
+const port = Number(process.env.port);
+
+server.start(() => console.log("listening on *:" + port));
