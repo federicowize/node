@@ -24,5 +24,3 @@ export class enviromentConfig {
     return new enviromentConfig().setEnviromentConfig();
   }
 }
-
-export default enviromentConfig;

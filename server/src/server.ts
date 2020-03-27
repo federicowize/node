@@ -9,7 +9,7 @@ import { setMiddlewares } from "./middleware/middleware";
 
 import routes from "./routes/routes";
 import { eventNames } from "cluster";
-import enviromentConfig from "./models/enviroment";
+import { enviromentConfig } from "./models/enviroment";
 
 export class Server {
   public app: express.Application;
