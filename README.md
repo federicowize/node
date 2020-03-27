@@ -1,23 +1,20 @@
 # Node js server
 
-This proyect is a node js server boilersplate. This boilersplate will be based in the POO 5 layers architecture and will try to respect the SOLID principle. 
+This proyect is a node js server boilersplate. This boilersplate will be based in the POO 4 layers architecture and will try to respect the SOLID principle as much as posible. 
 
 # Architecture
 
-( 5 layers )
-Original 5 layers for OOP :
+( 4 layers )
+Original 4 layers for OOP :
 
 * User Interface
     Front End 
 * Business Logic
     Logic of the application
-* Business Entities 
-    Types / Entities of the application
 * Mappers / Data Access Objects
     Mapping Database objects into Business Entities Types
 * Data access Layer
     Helpers to connect to de database
-
 
 ## Routes
 
@@ -29,12 +26,6 @@ Original 5 layers for OOP :
     Is the currently Business Logic of the application
 
     It should have only business algorithms.
-
-## Types
-
-    Is the Business Entities of the 5 layer architecture.
-
-    Expose all the objects that the application uses.
 
 ## Mappers (Not Done)
 
