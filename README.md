@@ -1,6 +1,6 @@
 # Node js server
 
-This proyect is a node js server boilersplate. This boilersplate will be based in the POO 4 layers architecture and will try to respect the SOLID principle as much as posible. 
+This proyect is a node js server boilersplate. This boilersplate will be based in the OOP 4 layers architecture and will try to respect the SOLID principle as much as posible. 
 
 # Architecture
 
